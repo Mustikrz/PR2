@@ -44,7 +44,7 @@ public class Polynom {
     	double[] stammfunktion = new double[koeffizient.length + 1];
     	
     	for(int i=0;i<=koeffizient.length;i++){
-    		stammfunktion[i+1] = koeffizient[i]/ (i+1); 	//Aufleiten von x^2
+    		stammfunktion[i+1] = koeffizient[i+1]/ (i+1); 	//Aufleiten von x^2 VIELLEICHT AUCH koeffizient[i]
     														//x^2 -> (x^3)/3
     	}
     	return stammfunktion;
