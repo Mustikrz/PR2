@@ -12,7 +12,7 @@ public class Polynom {
      
     }
     
-    //Konstruktor für Nullpolynom
+    //Konstruktor fï¿½r Nullpolynom
     public Polynom() {
     	koeffizient = null;
 	}
