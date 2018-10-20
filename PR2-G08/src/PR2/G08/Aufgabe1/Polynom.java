@@ -43,7 +43,7 @@ public class Polynom {
    
 	//Auslesen des Grades des Polynoms
 	public int getGrad() {
-		return koeffizient.length;
+		return koeffizient.length-1;
 	}
 	
 }
