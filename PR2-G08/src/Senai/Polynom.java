@@ -1,4 +1,4 @@
-package PR2.G08.Aufgabe1;
+package Senai;
 
 public class Polynom {
 
