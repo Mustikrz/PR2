@@ -3,17 +3,17 @@ package WS18.PR2.G8.PU1;
 public class Polynom {
 
 	public static void main(String[] args) {
-
+		/*
 		Polynom polynom1 = new Polynom(0, 1, 3, 8);
 		Polynom polynom2 = new Polynom(polynom1.integriere());
-		// Polynom ist = new Polynom(polynom1.addiere(polynom2));
-		// Polynom soll = new Polynom(2, 4, 6);
+		Polynom ist = new Polynom(polynom1.addiere(polynom2));
+		Polynom soll = new Polynom(2, 4, 6);
 		System.out.println("" + polynom1);
 		System.out.println("" + polynom2);
 		polynom2.getKoeffizienten();
-		// System.out.println("" + soll.equals(ist));
-		// System.out.println("" + new Polynom(polynom1.addiere(polynom2)));
-
+		System.out.println("" + soll.equals(ist));
+		System.out.println("" + new Polynom(polynom1.addiere(polynom2)));
+		 */
 	}
 
 	private final double[] koeffizient;
