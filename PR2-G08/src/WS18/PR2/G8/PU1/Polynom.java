@@ -30,7 +30,11 @@ public class Polynom {
 	}
 
 	/* ******** Methoden ******** */
-
+	/**
+	 * Methode um 2 Polynome zu addieren
+	 * @param other
+	 * @return Ergebnis = add(other.koeffizient, this.koeffizient)
+	 */
 	public double[] addiere(Polynom other) {
 
 		if (this.getGrad() > other.getGrad())
@@ -51,7 +55,12 @@ public class Polynom {
 
 		return newKoeff;
 	}
-
+	
+	/**
+	 * Methode um 2 Polynome zu subtrahieren
+	 * @param other
+	 * @return	Ergebnis
+	 */
 	public double[] subtrahiere(Polynom other) {
 
 		if (this.getGrad() > other.getGrad()) {
@@ -77,9 +86,12 @@ public class Polynom {
 		return newKoeff;
 	}
 
-	// Berechnen des Wertes des Polynoms fur ein beliebiges x
+	/**
+	 * Berechnen des Wertes des Polynoms fur ein beliebiges x
+	 * @param x
+	 * @return funktionswert
+	 */
 	public double berechne(double x) {
-		// Initialisierung vom Funktionswert
 		double funktionswert = 0;
 
 		for (int i = getGrad(); i >= 0; i--) {
@@ -90,7 +102,11 @@ public class Polynom {
 		return funktionswert;
 	}
 
-	// Berechnen des Wertes des Polynoms fuer mehrere x
+	/**
+	 * Berechnen des Wertes des Polynoms fuer mehrere x
+	 * @param x
+	 * @return funktionswert
+	 */
 	public double[] berechne(double... x) {
 		// Da wir mehrere Ergebnisse haben, erstellen wir für die
 		// Funktionswerte von x ein Array.
@@ -103,7 +119,10 @@ public class Polynom {
 		return funktionswert;
 	}
 
-	// Berechnen des Integrals des Polynoms
+	/**
+	 * Berechnen des Integrals des Polynoms
+	 * @return stammfunktion
+	 */
 	public double[] integriere() {
 		// Für das Integral muss man das Polynom aufleiten um eine Stammfunktion
 		// zu bilden.
@@ -119,7 +138,11 @@ public class Polynom {
 		}
 		return stammfunktion;
 	}
-
+	
+	/**
+	 * Berechnen der Ableitung des Polynom
+	 * @return newKoeff
+	 */
 	public double[] differenziere() {
 		if (this.getGrad() == 0)
 			return (new Polynom()).koeffizient;
@@ -130,7 +153,12 @@ public class Polynom {
 
 		return newKoeff;
 	}
-
+	
+	/**
+	 * Vergleicht ein Polynom mit dem anderen
+	 * @param other
+	 * @return
+	 */
 	public boolean equals(Polynom other) {
 		if (this.getGrad() != other.getGrad())
 			return false;
@@ -198,20 +226,28 @@ public class Polynom {
 
 	/* ******** Getter - Methoden ******** */
 
-	// Auslesen aller Koeffizienten in einem Schritt
+	/**
+	 * Auslesen aller Koeffizienten in einem Schritt
+	 */
 	public void getKoeffizienten() {
 		for (int i = 0; i < this.koeffizient.length; i++)
 			System.out.print(this.koeffizient[i] + " ");
 		System.out.println("");
 	}
 
-	// Auslesen einzelner Koeffizienten
+	/**
+	 * Auslesen einzelner Koeffizienten
+	 * @param i
+	 */
 	public void getKoeffizient(int i) {
 		if (i >= 0 && i < this.koeffizient.length)
 			System.out.println(this.koeffizient[i]);
 	}
 
-	// Auslesen des Grades des Polynoms
+	/**
+	 * Auslesen des Grades des Polynoms
+	 * @return grad
+	 */
 	public int getGrad() {
 		if (this.koeffizient.length == 1)
 			return 0;

@@ -27,7 +27,7 @@ public class Polynom {
 	}
 
 	/* ******** Methoden ******** */
-
+	
 	public double[] addiere(Polynom other) {
 
 		if (this.getGrad() > other.getGrad())
@@ -73,7 +73,12 @@ public class Polynom {
 
 		return newKoeff;
 	}
-
+	
+	/**
+	 * 
+	 * @param x
+	 * @return
+	 */
 	// Berechnen des Wertes des Polynoms fur ein beliebiges x
 	public double berechne(double x) {
 		// Initialisierung vom Funktionswert
