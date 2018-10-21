@@ -107,14 +107,12 @@ public class Polynom {
 		// Beim aufleiten eines Polynoms bekommt man am Ende eine Variable die
 		// unendlich viele Zahlen
 		// haben kann, daher muss das Array um eins vergrößert werden.
-		double[] stammfunktion = new double[koeffizient.length + 1];
+		double[] stammfunktion = new double[this.koeffizient.length + 1];
+		stammfunktion[0] = 0;
 
 		for (int i = 0; i < koeffizient.length; i++) {
 			// Aufleiten von x^2 VIELLEICHT AUCH koeffizient[i] x^2 -> (x^3)/3
-			stammfunktion[i] = koeffizient[i] / (i + 1);
-			if (i == koeffizient.length) {
-				stammfunktion[i + 1] = 0;
-			}
+			stammfunktion[i + 1] = koeffizient[i] / (i + 1);
 		}
 		return stammfunktion;
 	}
@@ -196,14 +194,16 @@ public class Polynom {
 	/* ******** Getter - Methoden ******** */
 
 	// Auslesen aller Koeffizienten in einem Schritt
-	public double[] getKoeffizienten() {
-		return this.koeffizient;
+	public void getKoeffizienten() {
+		for (int i = 0; i < this.koeffizient.length; i++)
+			System.out.print(this.koeffizient[i] + " ");
+		System.out.println("");
 	}
 
 	// Auslesen einzelner Koeffizienten
-	public double getKoeffizient(int i) {
-
-		return koeffizient[i];
+	public void getKoeffizient(int i) {
+		if (i >= 0 && i < this.koeffizient.length)
+			System.out.println(this.koeffizient[i]);
 	}
 
 	// Auslesen des Grades des Polynoms
