@@ -19,17 +19,22 @@ public class Polynom {
 	private final double[] koeffizient;
 	static final double GRENZWERT = 0.0001;
 
-	// Konstruktor
+	/**
+	 * Konstruktor für Polynom
+	 * @param koeffizienten
+	 */
 	public Polynom(double... koeffizienten) {
 		this.koeffizient = koeffizienten;
 	}
 
-	// Konstruktor fuer Nullpolynom
+	/**
+	 * Konstruktor fuer Nullpolynom
+	 */
 	public Polynom() {
 		this.koeffizient = new double[] { 0 };
 	}
 
-	/* ******** Methoden ******** */
+	/* ************************ Methoden ************************ */
 	/**
 	 * Methode um 2 Polynome zu addieren
 	 * @param other
@@ -224,7 +229,7 @@ public class Polynom {
 		return ausgabe;
 	}
 
-	/* ******** Getter - Methoden ******** */
+	/* ************************ Getter - Methoden ************************ */
 
 	/**
 	 * Auslesen aller Koeffizienten in einem Schritt
