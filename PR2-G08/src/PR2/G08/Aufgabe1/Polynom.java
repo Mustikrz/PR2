@@ -17,7 +17,7 @@ public class Polynom {
      
     }
     
-    //Konstruktor f�r Nullpolynom
+    //Konstruktor für Nullpolynom
     public Polynom() {
     	koeffizient = null;
     	String fehlermeldung = "Keine Werte an das Polynom übergeben!";
