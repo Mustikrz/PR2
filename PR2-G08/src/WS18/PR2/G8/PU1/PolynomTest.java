@@ -17,6 +17,7 @@ public class PolynomTest {
 		assertEquals(9.5,polynom0.berechne(1),0.000001);
 		assertEquals(25.5,polynom0.berechne(-1),0.000001);
 		assertEquals(59017.5,polynom0.berechne(5),0.000001);
+		assertEquals(109017.5,polynom0.berechne(-5),0.000001);
 	}
 	
 	@Test
