@@ -4,8 +4,8 @@ public class Polynom {
 
     public static void main(String[] args) { 
     	
-    	Polynom polynom1 = new Polynom(1,2);
-    	//System.out.println(polynom1.berechne(1));	//Funktioniert
+    	Polynom polynom1 = new Polynom();
+    	System.out.println(polynom1.berechne(1));	//Funktioniert
     	
     	//System.out.println(polynom1.berechne(2,2)); //Funktioniert	
     }    
@@ -19,7 +19,7 @@ public class Polynom {
     
     //Konstruktor für Nullpolynom
     public Polynom() {
-    	koeffizient = null;
+    	koeffizient = new double[] {0};
     	String fehlermeldung = "Keine Werte an das Polynom übergeben!";
     	System.out.print(fehlermeldung);
 	}
