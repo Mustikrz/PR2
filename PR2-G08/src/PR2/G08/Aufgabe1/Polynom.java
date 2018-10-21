@@ -5,7 +5,7 @@ public class Polynom {
     public static void main(String[] args) {   }    
 
     double[] koeffizient;
-    int x;
+   
 
     // Konstruktor
     Polynom(double... koeffizienten) {
