@@ -4,10 +4,13 @@ public class Polynom {
 
     public static void main(String[] args) { 
     	
-    	Polynom polynom1 = new Polynom();
-    	System.out.println(polynom1.berechne(1));	//Funktioniert
+    	Polynom polynom1 = new Polynom(1,2,5);
+    	//System.out.println(polynom1.berechne(1));	//Funktioniert
     	
-    	//System.out.println(polynom1.berechne(2,2)); //Funktioniert	
+    	//System.out.println(polynom1.berechne(2,2)); //Funktioniert
+    	//System.out.println(polynom1.getGrad()); //Funktioniert
+    	System.out.println(polynom1.integriere());
+    	
     }    
 
     double[] koeffizient;
@@ -64,9 +67,12 @@ public class Polynom {
     	//haben kann, daher muss das Array um eins vergrößert werden.
     	double[] stammfunktion = new double[koeffizient.length + 1];
     	
-    	for(int i=0;i<=koeffizient.length;i++){
-    		stammfunktion[i+1] = koeffizient[i+1]/ (i+1); 	//Aufleiten von x^2 VIELLEICHT AUCH koeffizient[i]
+    	for(int i=0;i<koeffizient.length;i++){
+    		stammfunktion[i] = koeffizient[i]/ (i+1); 	//Aufleiten von x^2 VIELLEICHT AUCH koeffizient[i]
     														//x^2 -> (x^3)/3
+    		if(i==koeffizient.length){
+    			stammfunktion[i+1] = 0;
+    		}
     	}
     	return stammfunktion;
     }
