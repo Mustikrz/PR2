@@ -2,7 +2,7 @@ package WS18.PR2.G8.PU1;
 
 public class Polynom {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		/*
 		Polynom polynom1 = new Polynom(0, 1, 3, 8);
 		Polynom polynom2 = new Polynom(polynom1.integriere());
@@ -14,25 +14,25 @@ public class Polynom {
 		System.out.println("" + soll.equals(ist));
 		System.out.println("" + new Polynom(polynom1.addiere(polynom2)));
 		 */
-	}
+    }
 
-	private final double[] koeffizient;
-	static final double GRENZWERT = 0.0001;
+    private final double[] koeffizient;
+    static final double GRENZWERT = 0.0001;
 
 	/**
 	 * Konstruktor für Polynom
 	 * @param koeffizienten
 	 */
-	public Polynom(double... koeffizienten) {
-		this.koeffizient = koeffizienten;
-	}
+    public Polynom(double... koeffizienten) {
+        this.koeffizient = koeffizienten;
+    }
 
 	/**
 	 * Konstruktor fuer Nullpolynom
 	 */
-	public Polynom() {
-		this.koeffizient = new double[] { 0 };
-	}
+    public Polynom() {
+        this.koeffizient = new double[] { 0 };
+    }
 
 	/* ************************ Methoden ************************ */
 	/**
@@ -40,71 +40,74 @@ public class Polynom {
 	 * @param other
 	 * @return Ergebnis = add(other.koeffizient, this.koeffizient)
 	 */
-	public double[] addiere(Polynom other) {
+    public double[] addiere(Polynom other) {
 
-		if (this.getGrad() > other.getGrad())
-			return add(this.koeffizient, other.koeffizient);
-		else
-			return add(other.koeffizient, this.koeffizient);
-	}
+        if (this.getGrad() > other.getGrad())
+        	//Links größeres Array, rechts kleineres
+            return add(this.koeffizient, other.koeffizient);
+        else
+            return add(other.koeffizient, this.koeffizient);
+    }
 
-	private double[] add(double[] groeßererKoeff, double[] kleinererKoeff) {
-		double[] newKoeff = new double[groeßererKoeff.length];
+    private double[] add(double[] groeßererKoeff, double[] kleinererKoeff) {
+        //Größtes Polynom verwenden zum Array erstellen
+    	double[] newKoeff = new double[groeßererKoeff.length];
 
-		int i = 0;
-		for (; i < kleinererKoeff.length; i++)
-			newKoeff[i] = groeßererKoeff[i] + kleinererKoeff[i];
+        int i = 0;
+        //Bis zum kleinsten Array addieren, weil dann ist es zuenden
+        for (; i < kleinererKoeff.length; i++)
+            newKoeff[i] = groeßererKoeff[i] + kleinererKoeff[i];
+        //hier wird einfach der rest des größeren arrays hinzugefügt
+        for (; i < groeßererKoeff.length; i++)
+            newKoeff[i] = groeßererKoeff[i];
 
-		for (; i < groeßererKoeff.length; i++)
-			newKoeff[i] = groeßererKoeff[i];
-
-		return newKoeff;
-	}
+        return newKoeff;
+    }
 	
 	/**
 	 * Methode um 2 Polynome zu subtrahieren
 	 * @param other
 	 * @return	Ergebnis
 	 */
-	public double[] subtrahiere(Polynom other) {
+    public double[] subtrahiere(Polynom other) {
 
-		if (this.getGrad() > other.getGrad()) {
-			return sub(this.koeffizient, other.koeffizient, new double[this.koeffizient.length]);
-		} else {
-			return sub(this.koeffizient, other.koeffizient, new double[other.koeffizient.length]);
-		}
-	}
+        if (this.getGrad() > other.getGrad()) {
+            return sub(this.koeffizient, other.koeffizient, new double[this.koeffizient.length]);
+        } else {
+            return sub(this.koeffizient, other.koeffizient, new double[other.koeffizient.length]);
+        }
+    }
 
-	private double[] sub(double[] ersterKoeff, double[] zweiterKoeff, double[] newKoeff) {
+    private double[] sub(double[] ersterKoeff, double[] zweiterKoeff, double[] newKoeff) {
+    //ersterKoeff = erstes Polynom & zweiterKoeff = other
+    int i = 0;
+        for (; i < ersterKoeff.length && i < zweiterKoeff.length; i++)
+            newKoeff[i] = ersterKoeff[i] - zweiterKoeff[i];
 
-		int i = 0;
-		for (; i < ersterKoeff.length && i < zweiterKoeff.length; i++)
-			newKoeff[i] = ersterKoeff[i] - zweiterKoeff[i];
+        if (ersterKoeff.length > zweiterKoeff.length)
+            for (; i < ersterKoeff.length; i++)
+                newKoeff[i] = ersterKoeff[i];
+        else
+            for (; i < zweiterKoeff.length; i++)
+                newKoeff[i] = 0 - zweiterKoeff[i];
 
-		if (ersterKoeff.length > zweiterKoeff.length)
-			for (; i < ersterKoeff.length; i++)
-				newKoeff[i] = ersterKoeff[i];
-		else
-			for (; i < zweiterKoeff.length; i++)
-				newKoeff[i] = 0 - zweiterKoeff[i];
-
-		return newKoeff;
-	}
+        return newKoeff;
+    }
 
 	/**
 	 * Berechnen des Wertes des Polynoms fur ein beliebiges x
 	 * @param x
 	 * @return funktionswert
 	 */
-	public double berechne(double x) {
-		double funktionswert = 0;
+     public double berechne(double x) {
+     
+    	double funktionswert = 0;
 
-		for (int i = getGrad(); i >= 0; i--) {
+        for (int i = getGrad(); i >= 0; i--) {
 			// Funktionswert = Koeffizient * x^Grad
-			funktionswert = funktionswert + (Math.pow(x, i) * koeffizient[i]);
-
-		}
-		return funktionswert;
+            funktionswert = funktionswert + (Math.pow(x, i) * koeffizient[i]);
+        }
+        return funktionswert;
 	}
 
 	/**
@@ -112,85 +115,88 @@ public class Polynom {
 	 * @param x
 	 * @return funktionswert
 	 */
-	public double[] berechne(double... x) {
+    public double[] berechne(double... x) {
 		// Da wir mehrere Ergebnisse haben, erstellen wir für die
 		// Funktionswerte von x ein Array.
-		double funktionswert[] = new double[x.length];
+        double funktionswert[] = new double[x.length];
 
-		for (int j = 0; j < x.length; j++) {
-			funktionswert[j] = funktionswert[j] + berechne(x[j]);
-			System.out.println(funktionswert[j]);
-		}
-		return funktionswert;
-	}
+        for (int j = 0; j < x.length; j++) {
+            funktionswert[j] = funktionswert[j] + berechne(x[j]);
+            System.out.println(funktionswert[j]);
+        }
+        return funktionswert;
+    }
 
 	/**
 	 * Berechnen des Integrals des Polynoms
 	 * @return stammfunktion
 	 */
-	public double[] integriere() {
+    public double[] integriere() {
 		// Für das Integral muss man das Polynom aufleiten um eine Stammfunktion
 		// zu bilden.
 		// Beim aufleiten eines Polynoms bekommt man am Ende eine Variable die
 		// unendlich viele Zahlen
 		// haben kann, daher muss das Array um eins vergrößert werden.
-		double[] stammfunktion = new double[this.koeffizient.length + 1];
-		stammfunktion[0] = 0;
+        double[] stammfunktion = new double[this.koeffizient.length + 1];
+        stammfunktion[0] = 0;
 
-		for (int i = 0; i < koeffizient.length; i++) {
-			// Aufleiten von x^2 VIELLEICHT AUCH koeffizient[i] x^2 -> (x^3)/3
-			stammfunktion[i + 1] = koeffizient[i] / (i + 1);
-		}
-		return stammfunktion;
-	}
+        for (int i = 0; i < koeffizient.length; i++) {
+			// Aufleiten von x^2:     x^2 -> (x^3)/3
+             stammfunktion[i + 1] = koeffizient[i] / (i + 1);
+        }
+        return stammfunktion;
+    }
 	
 	/**
 	 * Berechnen der Ableitung des Polynom
 	 * @return newKoeff
 	 */
-	public double[] differenziere() {
-		if (this.getGrad() == 0)
-			return (new Polynom()).koeffizient;
+    public double[] differenziere() {
+        if (this.getGrad() == 0)
+            return (new Polynom()).koeffizient;
 
-		double[] newKoeff = new double[this.getGrad()];
-		for (int i = 0; i < newKoeff.length; i++)
-			newKoeff[i] = this.koeffizient[i + 1] * (i + 1);
+        //double[] newKoeff = new double[this.getGrad()];
+        double[] newKoeff = new double[this.koeffizient.length - 1];
+        for (int i = 0; i < newKoeff.length; i++)
+            newKoeff[i] = this.koeffizient[i + 1] * (i + 1);
 
-		return newKoeff;
-	}
+        return newKoeff;
+    }
 	
 	/**
 	 * Vergleicht ein Polynom mit dem anderen
 	 * @param other
 	 * @return
 	 */
-	public boolean equals(Polynom other) {
-		if (this.getGrad() != other.getGrad())
-			return false;
+    public boolean equals(Polynom other) {
+        if (this.getGrad() != other.getGrad())
+             return false;
 
-		for (int i = 0; i < this.koeffizient.length; i++)
-			if (Math.abs(this.koeffizient[i] - other.koeffizient[i]) > GRENZWERT)
-				return false;
+        for (int i = 0; i < this.koeffizient.length; i++)
+            if (Math.abs(this.koeffizient[i] - other.koeffizient[i]) > GRENZWERT)
+                return false;
 
-		return true;
+        return true;
 	}
 
 	@Override
-	public String toString() {
-		if (this.getGrad() == 0 && Math.abs(this.koeffizient[0]) < GRENZWERT)
-			return "Grad 0: 0";
+    public String toString() {
+        if (this.getGrad() == 0 && Math.abs(this.koeffizient[0]) < GRENZWERT)
+            return "Grad 0: 0";
 
-		String ausgabe = "Grad " + this.getGrad() + ":";
+        String ausgabe = "Grad " + this.getGrad() + ":";
 
-		boolean ersterEintrag = true;
-		int i = this.koeffizient.length - 1;
-		for (; ersterEintrag && i > 1; i--)
-			if (Math.abs(this.koeffizient[i]) > GRENZWERT) {
-				ausgabe = ausgabe + " " + this.koeffizient[i] + "x^" + i;
-				ersterEintrag = false;
-			}
+        boolean ersterEintrag = true;
+        int i = this.koeffizient.length - 1;
+        for (; ersterEintrag && i > 1; i--)
+        	//0 aussortieren
+             if (Math.abs(this.koeffizient[i]) > GRENZWERT) {
+                 ausgabe = ausgabe + " " + this.koeffizient[i] + "x^" + i;
+                 ersterEintrag = false;
+             }
 
 		for (; i > 1; i--)
+			//Vergleichen ob Zahl jetzt positiv oder negativ ist
 			if (Math.abs(this.koeffizient[i]) > GRENZWERT && this.koeffizient[i] > 0)
 				ausgabe = ausgabe + " +" + this.koeffizient[i] + "x^" + i;
 			else if (Math.abs(this.koeffizient[i]) > GRENZWERT && this.koeffizient[i] < 0)
@@ -234,18 +240,18 @@ public class Polynom {
 	/**
 	 * Auslesen aller Koeffizienten in einem Schritt
 	 */
-	public void getKoeffizienten() {
-		for (int i = 0; i < this.koeffizient.length; i++)
+    public void getKoeffizienten() {
+        for (int i = 0; i < this.koeffizient.length; i++)
 			System.out.print(this.koeffizient[i] + " ");
-		System.out.println("");
-	}
+        System.out.println("");
+    }
 
 	/**
 	 * Auslesen einzelner Koeffizienten
 	 * @param i
 	 */
-	public void getKoeffizient(int i) {
-		if (i >= 0 && i < this.koeffizient.length)
+    public void getKoeffizient(int i) {
+        if (i >= 0 && i < this.koeffizient.length)
 			System.out.println(this.koeffizient[i]);
 	}
 
